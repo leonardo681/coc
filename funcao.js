@@ -1,12 +1,18 @@
-document.addEventListener("DOMContentLoaded", function () {
-    const paragrafos = document.querySelectorAll(".escondido");
-    const botoes = document.querySelectorAll("button.mostrar");
+document.addEventListener("DOMContentLoaded", () => {
+    // Mostrar subgrupo ao clicar no botão principal
+    const botoesPrincipais = document.querySelectorAll("button.mostrar");
+    botoesPrincipais.forEach(botao => {
+        botao.addEventListener("click", () => {
+            const subgrupo = botao.nextElementSibling;
+            subgrupo.classList.toggle("mostrar-paragrafo");
+        });
+    });
 
-    botoes.forEach((btn, index) => {
-        const paragrafo = paragrafos[index];
-        paragrafo.classList.remove("mostrar-paragrafo"); // garantir escondido
-
-        btn.addEventListener("click", function () {
+    // Mostrar parágrafos ao clicar nos sub-botões
+    const botoesSub = document.querySelectorAll("button.mostrar-sub");
+    botoesSub.forEach(botao => {
+        botao.addEventListener("click", () => {
+            const paragrafo = botao.nextElementSibling;
             paragrafo.classList.toggle("mostrar-paragrafo");
         });
     });
